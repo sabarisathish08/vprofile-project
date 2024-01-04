@@ -1,5 +1,5 @@
 FROM openjdk:17 AS BUILD_IMAGE
-RUN sudo apt update && sudo apt install maven -y
+RUN apt update && apt install maven -y
 RUN git clone https://github.com/sabarisathish08/vprofile-project/tree/containers 
 RUN cd vprofile-project && git checkout docker && mvn install 
 
