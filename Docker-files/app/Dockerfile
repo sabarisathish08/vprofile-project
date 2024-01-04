@@ -1,4 +1,4 @@
-FROM openjdk:17 AS BUILD_IMAGE
+FROM adoptopenjdk:17-jdk-hotspot-bionic AS BUILD_IMAGE
 RUN apk update && apk add maven
 RUN git clone https://github.com/sabarisathish08/vprofile-project/tree/containers 
 RUN cd vprofile-project && git checkout docker && mvn install 
