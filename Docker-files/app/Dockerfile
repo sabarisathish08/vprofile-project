@@ -1,7 +1,7 @@
-FROM maven:3.8.4-openjdk:17-slim AS BUILD_IMAGE
+FROM openjdk:17 AS BUILD_IMAGE
+RUN apt-get update && apt-get install maven -y
 RUN git clone https://github.com/sabarisathish08/vprofile-project/tree/containers 
-WORKDIR /vprofile-project
-RUN mvn install -y
+RUN cd vprofile-project && git checkout docker && mvn install 
 
 FROM tomcat:9-jre11
 LABEL "Project"="Vprofile"
@@ -10,4 +10,4 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 COPY --from=BUILD_IMAGE vprofile-project/target/vprrofile-v2.tar /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
-CMD ["container.sh","run"]
+CMD ["container.sh", "run"]
