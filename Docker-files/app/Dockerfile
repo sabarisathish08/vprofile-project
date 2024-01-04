@@ -1,7 +1,7 @@
-FROM openjdk:17 AS BUILD_IMAGE
-RUN apt update && apt install maven -y
+FROM maven:3.8.4-openjdk:17 AS BUILD_IMAGE
 RUN git clone https://github.com/sabarisathish08/vprofile-project/tree/containers 
-RUN cd vprofile-project && git checkout docker && mvn install 
+WORKDIR /vprofile-project
+RUN mvn install -y
 
 FROM tomcat:9-jre11
 LABEL "Project"="Vprofile"
