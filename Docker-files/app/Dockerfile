@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-bionic AS BUILD_IMAGE
+FROM openjdk:17-jdk AS BUILD_IMAGE
 RUN apt update && apt install maven -y
 RUN git clone https://github.com/sabarisathish08/vprofile-project/tree/containers 
 RUN cd vprofile-project && git checkout docker && mvn install 
