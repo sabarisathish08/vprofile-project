@@ -1,4 +1,4 @@
-FROM maven:3.8.4-openjdk:17 AS BUILD_IMAGE
+FROM maven:3.8.4-openjdk:17-slim AS BUILD_IMAGE
 RUN git clone https://github.com/sabarisathish08/vprofile-project/tree/containers 
 WORKDIR /vprofile-project
 RUN mvn install -y
